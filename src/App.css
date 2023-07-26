@@ -47,8 +47,10 @@
   flex-direction: column;
 }
 
-h1 {
+h1,
+h3 {
   margin: 0;
+  font-weight: 300;
 }
 
 .header-container {
@@ -80,8 +82,8 @@ h1 {
   padding-left: 12px;
 }
 
-.nav-menu-item-container.selected {
-  border: 1px solid black;
+.nav-menu-item-container.selected h3 {
+  font-weight: 400;
 }
 
 .nav-menu-item-container.sub-option.selected {
