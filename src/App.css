@@ -98,22 +98,32 @@ h1 {
   box-sizing: border-box;
 }
 
-.config-menu-container {
+.config-menu-container,
+.main-menu-container {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+.config-menu-container {
   color: #666;
 }
 
-.config-menu-icon {
-  font-size: 40px;
-  margin-left: 12px;
-  position: relative;
-  bottom: 1px;
+.main-menu-container {
+  color: #d3d3d3;
 }
 
-.go-back {
-  color: #d3d3d3;
+.config-menu-icon {
+  font-size: 28px;
+  margin-left: 12px;
+  position: relative;
+  transform: rotate(180deg);
+}
+
+.main-menu-icon {
+  font-size: 28px;
+  margin-right: 12px;
+  position: relative;
 }
 
 .problem,

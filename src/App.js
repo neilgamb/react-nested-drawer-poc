@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   BrowserRouter,
   Route,
@@ -54,13 +54,17 @@ function Layout({ children }) {
   const [isSecondaryMenuOpen, setIsSecondaryMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
 
-  useEffect(() => {
+  const runNavCheck = useCallback(() => {
     const isLocationInSecondaryMenu =
       routes.find((route) => route.path === location.pathname)?.menuLevel ===
       "secondary";
 
     setIsSecondaryMenuOpen(isLocationInSecondaryMenu);
-  }, [location]);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    runNavCheck();
+  }, [runNavCheck, location]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -105,7 +109,7 @@ function Layout({ children }) {
           >
             <div className="config-menu-container">
               <h3>Configuation Menu </h3>
-              <h3 className="config-menu-icon">⚙</h3>
+              <h3 className="config-menu-icon">⬅</h3>
             </div>
           </div>
         </div>
@@ -121,7 +125,10 @@ function Layout({ children }) {
             className={`nav-menu-item-container sub-option`}
             onClick={() => setIsSecondaryMenuOpen(false)}
           >
-            <h3 className="go-back">⬅ Main menu</h3>
+            <div className="main-menu-container">
+              <h3 className="main-menu-icon">⬅</h3>
+              <h3>Main Menu </h3>
+            </div>
           </div>
           {routes.map((route, i) => {
             if (route.includeInDrawer && route.menuLevel === "secondary") {
@@ -144,7 +151,7 @@ function Layout({ children }) {
           })}
         </div>
       </div>
-      <div className="main-container">
+      <div className="main-container" onClick={runNavCheck}>
         <div className="header-container">
           <h1>{routeName}</h1>
         </div>
