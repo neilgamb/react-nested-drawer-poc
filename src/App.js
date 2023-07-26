@@ -121,7 +121,7 @@ function Layout({ children }) {
             className={`nav-menu-item-container sub-option`}
             onClick={() => setIsSecondaryMenuOpen(false)}
           >
-            <h3 className="go-back">⬅ Go back</h3>
+            <h3 className="go-back">⬅ Main menu</h3>
           </div>
           {routes.map((route, i) => {
             if (route.includeInDrawer && route.menuLevel === "secondary") {

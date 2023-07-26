@@ -30,16 +30,14 @@
 }
 
 .secondary-menu-open {
-  /* transition: 400ms; */
   left: 0px;
 }
 
 .secondary-menu-transition {
-  transition: 400ms;
+  transition: 250ms ease-in-out;
 }
 
 .secondary-menu-closed {
-  /* transition: 400ms; */
   left: 300px;
 }
 
@@ -130,4 +128,5 @@ h1 {
 
 .link {
   color: blue;
+  cursor: pointer;
 }
