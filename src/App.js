@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 
 import { NotFoundPage } from "./pages/404";
 import { ProblemPage } from "./pages/ProblemPage";
@@ -45,15 +45,36 @@ const routes = [
   },
 ];
 
+function Layout({ children }) {
+  const location = useLocation();
+  const routeName = routes.find(
+    (route) => route.path === location.pathname
+  )?.name;
+
+  return (
+    <div className="site-container">
+      <div className="nav-menu-container"></div>
+      <div className="main-container">
+        <div className="header-container">
+          <h1>{routeName}</h1>
+        </div>
+        <div className="page-container">{children}</div>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   return (
     <div className="root">
       <BrowserRouter>
-        <Routes>
-          {routes.map((route, key) => (
-            <Route key={key} path={route.path} element={route.element} />
-          ))}
-        </Routes>
+        <Layout>
+          <Routes>
+            {routes.map((route, key) => (
+              <Route key={key} path={route.path} element={route.element} />
+            ))}
+          </Routes>
+        </Layout>
       </BrowserRouter>
     </div>
   );
