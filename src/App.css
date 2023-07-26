@@ -30,12 +30,16 @@
 }
 
 .secondary-menu-open {
-  transition: 400ms;
+  /* transition: 400ms; */
   left: 0px;
 }
 
-.secondary-menu-closed {
+.secondary-menu-transition {
   transition: 400ms;
+}
+
+.secondary-menu-closed {
+  /* transition: 400ms; */
   left: 300px;
 }
 

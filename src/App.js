@@ -7,6 +7,7 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
+import classNames from "classnames";
 
 import { NotFoundPage } from "./pages/404";
 import { ProblemPage } from "./pages/ProblemPage";
@@ -51,6 +52,7 @@ function Layout({ children }) {
   const navigate = useNavigate();
 
   const [isSecondaryMenuOpen, setIsSecondaryMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
     const isLocationInSecondaryMenu =
@@ -59,6 +61,12 @@ function Layout({ children }) {
 
     setIsSecondaryMenuOpen(isLocationInSecondaryMenu);
   }, [location]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsMounted(true);
+    }, 0);
+  }, [setIsMounted]);
 
   if (location.pathname === "/problem") {
     return <ProblemPage />;
@@ -102,11 +110,12 @@ function Layout({ children }) {
           </div>
         </div>
         <div
-          className={`nav-menu-secondary${
-            isSecondaryMenuOpen
-              ? " secondary-menu-open"
-              : " secondary-menu-closed"
-          }`}
+          className={classNames(
+            "nav-menu-secondary",
+            { "secondary-menu-transition": isMounted },
+            { "secondary-menu-open": isSecondaryMenuOpen },
+            { "secondary-menu-closed": !isSecondaryMenuOpen }
+          )}
         >
           <div
             className={`nav-menu-item-container sub-option`}
