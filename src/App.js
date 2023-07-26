@@ -1,23 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { NotFoundPage } from "./pages/404";
+import { ProblemPage } from "./pages/ProblemPage";
+import { HomePage } from "./pages/HomePage";
+import { ProfilePage } from "./pages/ProfilePage";
+import { SettingsPage } from "./pages/SettingsPage";
+
+const routes = [
+  {
+    path: "*",
+    name: "Not Found Page",
+    element: <NotFoundPage />,
+    includeInDrawer: false,
+    protected: false,
+  },
+  {
+    path: "/problem",
+    name: "Problem Page",
+    element: <ProblemPage />,
+    includeInDrawer: false,
+    protected: false,
+  },
+  {
+    path: "/",
+    name: "Home Page",
+    element: <HomePage />,
+    includeInDrawer: false,
+    protected: false,
+  },
+  {
+    path: "/profile",
+    name: "Profile Page",
+    element: <ProfilePage />,
+    includeInDrawer: false,
+    protected: false,
+  },
+  {
+    path: "/settings",
+    name: "Settings Page",
+    element: <SettingsPage />,
+    includeInDrawer: false,
+    protected: false,
+  },
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="root">
+      <BrowserRouter>
+        <Routes>
+          {routes.map((route, key) => (
+            <Route key={key} path={route.path} element={route.element} />
+          ))}
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
