@@ -10,9 +10,8 @@ import {
 
 import { NotFoundPage } from "./pages/404";
 import { ProblemPage } from "./pages/ProblemPage";
-import { HomePage } from "./pages/HomePage";
-import { ProfilePage } from "./pages/ProfilePage";
-import { SettingsPage } from "./pages/SettingsPage";
+import { AppointmentAuditPage } from "./pages/AppointmentAuditPage";
+import { AppointmentTypeCustomization } from "./pages/AppointmentTypeCustomization";
 
 const routes = [
   {
@@ -28,23 +27,16 @@ const routes = [
     includeInDrawer: false,
   },
   {
-    path: "/",
-    name: "Home Page",
-    element: <HomePage />,
+    path: "/appointment-audit",
+    name: "Appointment Audit",
+    element: <AppointmentAuditPage />,
     includeInDrawer: true,
     menuLevel: "primary",
   },
   {
-    path: "/profile",
-    name: "Profile Page",
-    element: <ProfilePage />,
-    includeInDrawer: true,
-    menuLevel: "primary",
-  },
-  {
-    path: "/settings",
-    name: "Settings Page",
-    element: <SettingsPage />,
+    path: "/appointment-type-customization",
+    name: "Appointment Type Customization",
+    element: <AppointmentTypeCustomization />,
     includeInDrawer: true,
     menuLevel: "secondary",
   },

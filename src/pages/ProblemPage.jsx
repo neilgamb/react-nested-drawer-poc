@@ -6,7 +6,7 @@ export const ProblemPage = () => {
   return (
     <div className="page-container-inner problem">
       <h1 className="header-1">Uh oh, there was an error</h1>
-      <h3 className="link" onClick={() => navigate("/")}>
+      <h3 className="link" onClick={() => navigate("/appointment-audit")}>
         Go back home
       </h3>
     </div>

@@ -6,7 +6,7 @@ export const NotFoundPage = () => {
   return (
     <div className="page-container-inner not-found">
       <h1 className="header-1">Uh oh, page not found</h1>
-      <h3 className="link" onClick={() => navigate("/")}>
+      <h3 className="link" onClick={() => navigate("/appointment-audit")}>
         Go back home
       </h3>
     </div>
