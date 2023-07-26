@@ -43,6 +43,22 @@ const routes = [
   },
 ];
 
+function App() {
+  return (
+    <div className="root">
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            {routes.map((route, key) => (
+              <Route key={key} path={route.path} element={route.element} />
+            ))}
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </div>
+  );
+}
+
 function Layout({ children }) {
   const location = useLocation();
   const routeName = routes.find(
@@ -157,22 +173,6 @@ function Layout({ children }) {
         </div>
         <div className="page-container">{children}</div>
       </div>
-    </div>
-  );
-}
-
-function App() {
-  return (
-    <div className="root">
-      <BrowserRouter>
-        <Layout>
-          <Routes>
-            {routes.map((route, key) => (
-              <Route key={key} path={route.path} element={route.element} />
-            ))}
-          </Routes>
-        </Layout>
-      </BrowserRouter>
     </div>
   );
 }
