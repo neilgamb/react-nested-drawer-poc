@@ -82,14 +82,32 @@ h1 {
   border: 1px solid black;
 }
 
+.nav-menu-item-container.sub-option.selected {
+  border: none;
+}
+
+.nav-menu-item-container.sub-option:hover {
+  border: none;
+}
+
 .nav-menu-item-container:hover {
-  border: 1px solid black;
+  opacity: 0.5;
   cursor: pointer;
   box-sizing: border-box;
 }
 
-.config-menu {
+.config-menu-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   color: #666;
+}
+
+.config-menu-icon {
+  font-size: 40px;
+  margin-left: 12px;
+  position: relative;
+  bottom: 1px;
 }
 
 .go-back {

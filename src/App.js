@@ -92,10 +92,13 @@ function Layout({ children }) {
             }
           })}
           <div
-            className={`nav-menu-item-container`}
+            className={`nav-menu-item-container sub-option`}
             onClick={() => setIsSecondaryMenuOpen(true)}
           >
-            <h3 className="config-menu">Configuation Menu ⬇</h3>
+            <div className="config-menu-container">
+              <h3>Configuation Menu </h3>
+              <h3 className="config-menu-icon">⚙</h3>
+            </div>
           </div>
         </div>
         <div
@@ -106,7 +109,7 @@ function Layout({ children }) {
           }`}
         >
           <div
-            className={`nav-menu-item-container`}
+            className={`nav-menu-item-container sub-option`}
             onClick={() => setIsSecondaryMenuOpen(false)}
           >
             <h3 className="go-back">⬅ Go back</h3>
