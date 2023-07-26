@@ -9,7 +9,28 @@
 
 .nav-menu-container {
   width: 300px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-menu-primary {
+  width: 300px;
+  height: 100%;
   background-color: #c0c0c0;
+  position: absolute;
+}
+
+.nav-menu-secondary {
+  width: 300px;
+  height: 100%;
+  background-color: #868686;
+  position: absolute;
+  left: 300px;
+}
+
+.secondary-menu-open {
+  left: 0px;
 }
 
 .main-container {
@@ -41,4 +62,22 @@ h1 {
 
 .header-1 {
   font-size: 22px;
+}
+
+.nav-menu-item-container {
+  margin: 12px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+}
+
+.nav-menu-item-container.selected {
+  border: 1px solid black;
+}
+
+.nav-menu-item-container:hover {
+  border: 1px solid black;
+  cursor: pointer;
+  box-sizing: border-box;
 }

@@ -1,5 +1,12 @@
 import "./App.css";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 import { NotFoundPage } from "./pages/404";
 import { ProblemPage } from "./pages/ProblemPage";
@@ -13,35 +20,33 @@ const routes = [
     name: "Not Found Page",
     element: <NotFoundPage />,
     includeInDrawer: false,
-    protected: false,
   },
   {
     path: "/problem",
     name: "Problem Page",
     element: <ProblemPage />,
     includeInDrawer: false,
-    protected: false,
   },
   {
     path: "/",
     name: "Home Page",
     element: <HomePage />,
-    includeInDrawer: false,
-    protected: false,
+    includeInDrawer: true,
+    menuLevel: "primary",
   },
   {
     path: "/profile",
     name: "Profile Page",
     element: <ProfilePage />,
-    includeInDrawer: false,
-    protected: false,
+    includeInDrawer: true,
+    menuLevel: "primary",
   },
   {
     path: "/settings",
     name: "Settings Page",
     element: <SettingsPage />,
-    includeInDrawer: false,
-    protected: false,
+    includeInDrawer: true,
+    menuLevel: "secondary",
   },
 ];
 
@@ -51,9 +56,80 @@ function Layout({ children }) {
     (route) => route.path === location.pathname
   )?.name;
 
+  const navigate = useNavigate();
+
+  const [isSecondaryMenuOpen, setIsSecondaryMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const isLocationInSecondaryMenu =
+      routes.find((route) => route.path === location.pathname)?.menuLevel ===
+      "secondary";
+
+    setIsSecondaryMenuOpen(isLocationInSecondaryMenu);
+  }, [location]);
+
   return (
     <div className="site-container">
-      <div className="nav-menu-container"></div>
+      <div className="nav-menu-container">
+        <div className="nav-menu-primary">
+          {routes.map((route, i) => {
+            if (route.includeInDrawer && route.menuLevel === "primary") {
+              const isCurrentPath = route.path === location.pathname;
+
+              return (
+                <div
+                  key={i}
+                  className={`nav-menu-item-container${
+                    isCurrentPath ? " selected" : ""
+                  }`}
+                  onClick={() => navigate(route.path)}
+                >
+                  <h3 className="nvam-menu-item-text">{route.name}</h3>
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
+          <div
+            className={`nav-menu-item-container`}
+            onClick={() => setIsSecondaryMenuOpen(true)}
+          >
+            <h3 className="nvam-menu-item-text">Configuation Menu ⬇</h3>
+          </div>
+        </div>
+        <div
+          className={`nav-menu-secondary${
+            isSecondaryMenuOpen ? " secondary-menu-open" : ""
+          }`}
+        >
+          <div
+            className={`nav-menu-item-container`}
+            onClick={() => setIsSecondaryMenuOpen(false)}
+          >
+            <h3 className="nvam-menu-item-text">⬅ Go back</h3>
+          </div>
+          {routes.map((route, i) => {
+            if (route.includeInDrawer && route.menuLevel === "secondary") {
+              const isCurrentPath = route.path === location.pathname;
+
+              return (
+                <div
+                  key={i}
+                  className={`nav-menu-item-container${
+                    isCurrentPath ? " selected" : ""
+                  }`}
+                  onClick={() => navigate(route.path)}
+                >
+                  <h3 className="nvam-menu-item-text">{route.name}</h3>
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </div>
+      </div>
       <div className="main-container">
         <div className="header-container">
           <h1>{routeName}</h1>
