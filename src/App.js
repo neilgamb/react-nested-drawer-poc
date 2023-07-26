@@ -68,6 +68,14 @@ function Layout({ children }) {
     setIsSecondaryMenuOpen(isLocationInSecondaryMenu);
   }, [location]);
 
+  if (location.pathname === "/problem") {
+    return <ProblemPage />;
+  }
+
+  if (!routes.some((route) => route.path === location.pathname)) {
+    return <NotFoundPage />;
+  }
+
   return (
     <div className="site-container">
       <div className="nav-menu-container">
