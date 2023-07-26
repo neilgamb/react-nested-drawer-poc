@@ -30,7 +30,13 @@
 }
 
 .secondary-menu-open {
+  transition: 400ms;
   left: 0px;
+}
+
+.secondary-menu-closed {
+  transition: 400ms;
+  left: 300px;
 }
 
 .main-container {
@@ -80,4 +86,12 @@ h1 {
   border: 1px solid black;
   cursor: pointer;
   box-sizing: border-box;
+}
+
+.config-menu {
+  color: #666;
+}
+
+.go-back {
+  color: #d3d3d3;
 }

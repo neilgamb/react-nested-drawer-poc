@@ -84,7 +84,7 @@ function Layout({ children }) {
                   }`}
                   onClick={() => navigate(route.path)}
                 >
-                  <h3 className="nvam-menu-item-text">{route.name}</h3>
+                  <h3>{route.name}</h3>
                 </div>
               );
             } else {
@@ -95,19 +95,21 @@ function Layout({ children }) {
             className={`nav-menu-item-container`}
             onClick={() => setIsSecondaryMenuOpen(true)}
           >
-            <h3 className="nvam-menu-item-text">Configuation Menu ⬇</h3>
+            <h3 className="config-menu">Configuation Menu ⬇</h3>
           </div>
         </div>
         <div
           className={`nav-menu-secondary${
-            isSecondaryMenuOpen ? " secondary-menu-open" : ""
+            isSecondaryMenuOpen
+              ? " secondary-menu-open"
+              : " secondary-menu-closed"
           }`}
         >
           <div
             className={`nav-menu-item-container`}
             onClick={() => setIsSecondaryMenuOpen(false)}
           >
-            <h3 className="nvam-menu-item-text">⬅ Go back</h3>
+            <h3 className="go-back">⬅ Go back</h3>
           </div>
           {routes.map((route, i) => {
             if (route.includeInDrawer && route.menuLevel === "secondary") {
@@ -121,7 +123,7 @@ function Layout({ children }) {
                   }`}
                   onClick={() => navigate(route.path)}
                 >
-                  <h3 className="nvam-menu-item-text">{route.name}</h3>
+                  <h3>{route.name}</h3>
                 </div>
               );
             } else {
